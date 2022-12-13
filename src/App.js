@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Dog from "./components/Dog.js";
 import DogList from "./components/DogList";
 
 const dogData = [
@@ -21,16 +19,11 @@ const dogData = [
   }
 ];
 
-const specialDog = dogData[0];
-
 function App() {
   return (
     <div className='App'>
-      <DogList />
-      <Dog
-        name={specialDog.name}
-        favoriteToy={specialDog.favoriteToy}
-        chipNumber={specialDog.chipNumber}
+      <DogList
+        dogs={dogData}
       />
     </div>
   );
