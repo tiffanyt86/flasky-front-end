@@ -1,14 +1,23 @@
+import PropTypes from 'prop-types';
 // cuteness level
 // name, age
 // breed
 
-const Dog = () => {
+const Dog = (props) => {
+    // props.key => value
     return (<ul>
-            Frodo
-            <li>age: 5</li>
-            <li>breed: greyhound mutt</li>
-            <li>cuteness level: 50000000</li>
+            {props.name}
+            <li>age: {props.age}</li>
+            <li>breed: {props.breed}</li>
+            <li>cuteness Level: {props.cuteness}</li>
         </ul>);
+}
+
+Dog.propTypes = {
+    breed: PropTypes.string.isRequired,
+    age: PropTypes.string.isRequired,
+    cuteness: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 }
 
 export default Dog;
