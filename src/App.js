@@ -51,12 +51,19 @@ function App() {
 
   const totalPetTally = calcTotalPets(catData);
 
+  const unregisterCat = id => {
+    setCatData(catData => catData.filter(cat => {
+      return cat.id !== id;
+    }));
+  };
+
   return (
     <div className="App">
       <h2>Total Number of Pets Across All Kitties: {totalPetTally}</h2>
       <CatList 
         catData={catData}
         onPetCat={petCat}
+        onUnregister={unregisterCat}
       />
     </div>
   );

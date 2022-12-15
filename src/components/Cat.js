@@ -10,6 +10,7 @@ const Cat = (props) => {
       <h3>Caretaker: {props.caretaker}</h3>
       <h3># Pets: {props.petCount}</h3>
       <button onClick={() => props.onPetCat(props.id)}>Pet Cat</button>
+      <button onClick={() => props.onUnregister(props.id)}>Delete Cat</button>
     </li>
   )
 };
@@ -20,6 +21,8 @@ Cat.propTypes = {
   personality: PropTypes.string.isRequired,
   petCount: PropTypes.number.isRequired,
   caretaker: PropTypes.string.isRequired,
+  onPetCat: PropTypes.func.isRequired, 
+  onUnregister: PropTypes.func.isRequired, 
 };
 
 

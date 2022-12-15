@@ -18,6 +18,7 @@ const CatList = (props) => {
             petCount={cat.petCount}
             key={cat.id}
             onPetCat={props.onPetCat}
+            onUnregister={props.onUnregister}
           />
         ))}
       </ul>
@@ -35,6 +36,7 @@ CatList.propTypes = {
     petCount: PropTypes.number.isRequired, 
   })),
   onPetCat: PropTypes.func.isRequired,
+  onUnregister: PropTypes.func.isRequired,
 };
 
 export default CatList;
