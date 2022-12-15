@@ -1,0 +1,92 @@
+[
+  {
+    "caretaker": "Santos Pittman",
+    "id": 1,
+    "age": 5,
+    "name": "Kuma",
+    "breed": "Pitbull",
+    "cuteness": 10000,
+    "petCount": 192
+  },
+  {
+    "caretaker": "Santos Pittman",
+    "id": 2,
+    "age": 5,
+    "name": "Lucy",
+    "breed": "Chihuahua",
+    "cuteness": 20000,
+    "petCount": 349
+  },
+  {
+    "caretaker": "Brendan Valentine",
+    "id": 3,
+    "age": 8,
+    "name": "Thor",
+    "breed": "Golden Retriever",
+    "cuteness": 50000,
+    "petCount": 363
+  },
+  {
+    "caretaker": "Issac Nguyen",
+    "id": 4,
+    "age": 9,
+    "name": "Pepper",
+    "breed": "Dachsund",
+    "cuteness": 20000,
+    "petCount": 90
+  },
+  {
+    "caretaker": "Leticia Graves",
+    "id": 5,
+    "age": 15,
+    "name": "Abby",
+    "breed": "Shiba Inu",
+    "cuteness": 10000,
+    "petCount": 477
+  },
+  {
+    "caretaker": "Angelica Sanford",
+    "id": 6,
+    "age": 52,
+    "name": "Lucky",
+    "breed": "Pomeranian",
+    "cuteness": 20000,
+    "petCount": 379
+  },
+  {
+    "caretaker": "Ben Cooper",
+    "id": 7,
+    "age": 5,
+    "name": "Belle",
+    "breed": "Beagle",
+    "cuteness": 20000,
+    "petCount": 64
+  },
+  {
+    "caretaker": "Ben Cooper",
+    "id": 8,
+    "age": 2,
+    "name": "Piper",
+    "breed": "Poodle",
+    "cuteness": 20000,
+    "petCount": 222
+  },
+  {
+    "caretaker": "Chasity Copeland",
+    "id": 9,
+    "age": 15,
+    "name": "Salem",
+    "breed": "Saint Bernard",
+    "cuteness": 80000,
+    "petCount": 134
+  },
+  {
+    "caretaker": "Jaquan Hebert",
+    "id": 10,
+    "age": 25,
+    "name": "Riley",
+    "breed": "Rottweiler",
+    "cuteness": 20000,
+    "petCount": 68
+  }
+]
