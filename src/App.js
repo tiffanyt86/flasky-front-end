@@ -1,34 +1,43 @@
 import "./App.css";
+import { useState } from "react";
 import DogList from "./components/DogList";
-
-const dogData = [
-  {
-    name: "Telfar",
-    age: "1",
-    cuteness: "1000000",
-    breed: "French Bulldog"
-  },
-  {
-    name: "Juicy",
-    age: "3",
-    cuteness: "500000",
-    breed: "Pug"
-  },
-  {
-    name: "Couture",
-    age: "4",
-    cuteness: "70000",
-    breed: "Poodle"
-  }
-]
+import dogDataJson from "./data/dogData.json";
 
 function App() {
-  // const dogInfo = [{ name: "Frodo", age: "5", breed: "mutt" }];
+  const [dogData, setDogData] = useState(dogDataJson);
   const name = "Panthers";
+
+  // Event Handler that describes how to increment petCount
+  const petDog = (id) => {
+    console.log(`Petting Doge ${id}`)
+    const newDogData = dogData.map(dog => {
+      if (dog.id === id){
+        return {...dog, petCount: dog.petCount + 1}
+      } else {
+        return dog;
+      }
+    });
+
+    setDogData(newDogData);
+  }
+
+  // reduce tangent
+  const calcTotalPets = dogData => {
+    return dogData.reduce((total, dog) => {
+      return total + dog.petCount;
+    }, 0);
+  };
+
+  const totalPetTally = calcTotalPets(dogData);
+
   return (
     <div className="App">
       Hello! It's Tuesday in {name} Roundtable!
-      <DogList dogData={dogData}/>
+      <h2>Total Number of Pets Across all Doggos: {totalPetTally} </h2>
+      <DogList 
+        dogData={dogData}
+        onPetDog={petDog}
+      />
     </div>
   );
 }
