@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CatList from './components/CatList';
+import axios from 'axios';
 
 import './App.css';
 
@@ -56,6 +57,18 @@ function App() {
       return cat.id !== id;
     }));
   };
+
+  useEffect(
+    () => {
+      axios.get('http://127.0.0.1:5000/cats')
+        .then((response) => {
+          setCatData(response.data);
+        })
+        .catch((error) => {
+          console.error(error.response.data.message);
+        });
+    },
+    []);
 
   return (
     <div className="App">
