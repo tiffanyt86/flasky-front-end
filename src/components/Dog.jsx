@@ -20,6 +20,7 @@ const Dog = (props) => {
             <li>pet count: {props.petCount}</li>
         </ul>
         <button onClick={() => props.onPetDog(props.id)}> Pet {props.name}</button>
+        <button onClick={() => props.onUnregister(props.id)}>Delete Dog</button>
     </div>);
 }
 
@@ -30,7 +31,8 @@ Dog.propTypes = {
     cuteness: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     petCount: PropTypes.number.isRequired,
-    onPetDog: PropTypes.func.isRequired
+    onPetDog: PropTypes.func.isRequired,
+    onUnregister: PropTypes.func.isRequired
 };
 
 

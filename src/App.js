@@ -21,6 +21,12 @@ function App() {
     setDogData(newDogData);
   }
 
+  const unregisterDog = id => {
+    setDogData(dogData => dogData.filter(dog => {
+      return dog.id !== id;
+    }));
+  }
+
   // reduce tangent
   const calcTotalPets = dogData => {
     return dogData.reduce((total, dog) => {
@@ -32,11 +38,12 @@ function App() {
 
   return (
     <div className="App">
-      Hello! It's Tuesday in {name} Roundtable!
+      Hello! It's Monday in {name} Roundtable!
       <h2>Total Number of Pets Across all Doggos: {totalPetTally} </h2>
       <DogList 
         dogData={dogData}
         onPetDog={petDog}
+        onUnregister={unregisterDog}
       />
     </div>
   );

@@ -12,6 +12,7 @@ const DogList = (props) => {
       cuteness={dog.cuteness}
       petCount={dog.petCount}
       onPetDog={props.onPetDog}
+      onUnregister={props.onUnregister}
       />
     })
     return (<div>
@@ -33,7 +34,8 @@ DogList.propTypes = {
     cuteness: PropTypes.number.isRequired,
     petCount: PropTypes.number.isRequired,
   })),
-  onPetDog: PropTypes.func.isRequired
+  onPetDog: PropTypes.func.isRequired,
+  onUnregister: PropTypes.func.isRequired
 };
 
 
