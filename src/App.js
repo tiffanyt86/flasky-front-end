@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CatList from './components/CatList';
+import axios from 'axios';
 
 import './App.css';
 
@@ -30,17 +31,74 @@ const catDataList = [
   },
 ];
 
+const kBaseUrl = 'http://localhost:5000';
+
+const convertFromApi = (apiCat) => {
+  // const {id, name, color, personality, pet_count, caretaker} = apiCat;
+  const {pet_count, ...rest} = apiCat;
+
+  // const newCat = {id, name, color, personality, petCount: pet_count, caretaker};
+  const newCat = {petCount: pet_count, ...rest};
+  return newCat;
+};
+
+const getAllCatsApi = () => {
+  return axios.get(`${kBaseUrl}/cats`)
+  .then(response => {
+    return response.data.map(convertFromApi);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+};
+
+const petCatApi = (id) => {
+  return axios.patch(`${kBaseUrl}/cats/${id}/pet`)
+  .then(response => {
+    return convertFromApi(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+};
+
+const unregisterCatApi = (id) => {
+  return axios.delete(`${kBaseUrl}/cats/${id}`)
+  .then(response => {
+    return convertFromApi(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+};
+
 function App() {
-  const [catData, setCatData] = useState(catDataList);
+  const [catData, setCatData] = useState([]);
+
+  const getAllCats = () => {
+    return getAllCatsApi()
+    .then(cats => {
+      // console.log(cats);
+      setCatData(cats);
+    })
+  };
+
+  useEffect(() => {
+    // data fetching code
+    getAllCats();
+  }, []);
 
   const petCat = (id) => {
-    setCatData(catData => catData.map(cat => {
-      if(cat.id === id) {
-        return {...cat, petCount: cat.petCount + 1}
-      } else {
-        return cat;
-      }
-    }));
+    return petCatApi(id)
+    .then(catResult => {
+      setCatData(catData => catData.map(cat => {
+        if(cat.id === catResult.id) {
+          return catResult;
+        } else {
+          return cat;
+        }
+      }));
+    })
   }
 
   const calcTotalPets = (catData) => {
@@ -52,9 +110,13 @@ function App() {
   const totalPetTally = calcTotalPets(catData);
 
   const unregisterCat = id => {
-    setCatData(catData => catData.filter(cat => {
-      return cat.id !== id;
-    }));
+    return unregisterCatApi(id)
+    .then(catResult => {
+      // setCatData(catData => catData.filter(cat => {
+      //   return cat.id !== catResult.id;
+      // }));
+      return getAllCats();
+    });
   };
 
   return (
