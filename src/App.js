@@ -35,13 +35,14 @@ function App() {
   const [catData, setCatData] = useState(catDataList);
 
   const petCat = (id) => {
-    setCatData(catData => catData.map(cat => {
-      if(cat.id === id) {
-        return {...cat, petCount: cat.petCount + 1}
-      } else {
-        return cat;
-      }
-    }));
+    axios
+      .patch(`http://127.0.0.1:5000/cats/${id}/pet`)
+      .then((response) => {
+        getAllCats();
+      })
+      .catch((error) => {
+        console.error(error.response.data.message);
+      });
   }
 
   const calcTotalPets = (catData) => {
@@ -58,15 +59,20 @@ function App() {
     }));
   };
 
+  const getAllCats = () => {
+    axios.get('http://127.0.0.1:5000/cats')
+      .then((response) => {
+        setCatData(response.data);
+      })
+      .catch((error) => {
+        console.error(error.response.data.message);
+      });
+  };
+
   useEffect(
     () => {
-      axios.get('http://127.0.0.1:5000/cats')
-        .then((response) => {
-          setCatData(response.data);
-        })
-        .catch((error) => {
-          console.error(error.response.data.message);
-        });
+      console.log('Doing UseEffect!');
+      getAllCats();
     },
     []);
 
