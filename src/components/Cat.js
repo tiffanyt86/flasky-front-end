@@ -10,7 +10,7 @@ const Cat = (props) => {
       <h3>Caretaker: {props.caretaker}</h3>
       <h3># Pets: {props.petCount}</h3>
       <button onClick={() => props.onPetCat(props.id)}>Pet Cat</button>
-      <button onClick={() => props.onUnregister(props.id)}>Delete Cat</button>
+      <button onClick={() => props.onUnregister(props.id)}>Unregister Cat</button>
     </li>
   )
 };
