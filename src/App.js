@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
-import CatList from './components/CatList';
 import axios from 'axios';
+import CatList from './components/CatList';
+import NewCatForm from './components/NewCatForm';
 
 import './App.css';
 
 const catDataList = [
   {
     name: "Ubik",
-    id: 1, 
+    id: 1,
     caretaker: "Maria",
     color: "grey",
     personality: "wild child",
-    petCount: 3, 
+    petCount: 3,
   },
   {
     name: "Pepper",
@@ -72,6 +73,22 @@ const unregisterCatApi = (id) => {
   });
 };
 
+const addNewCatApi = (name) => {
+  const currentCatData = {
+    name,
+    personality: "not at all fun",
+    color: "calico",
+    pet_count: 0,
+  };
+  return axios.post(`${kBaseUrl}/cats`, currentCatData)
+    .then(response => {
+      return convertFromApi(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
 function App() {
   const [catData, setCatData] = useState([]);
 
@@ -119,10 +136,19 @@ function App() {
     });
   };
 
+  const handleCatSubmit = (data) => {
+    addNewCatApi(data)
+      .then(newCat => {
+        setCatData([...catData, newCat])
+      })
+      .catch(e => console.log(e));
+  }
+
   return (
     <div className="App">
       <h2>Total Number of Pets Across All Kitties: {totalPetTally}</h2>
-      <CatList 
+      <NewCatForm handleCatSubmit={handleCatSubmit} />
+      <CatList
         catData={catData}
         onPetCat={petCat}
         onUnregister={unregisterCat}
