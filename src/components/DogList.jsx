@@ -1,28 +1,34 @@
 import PropTypes from 'prop-types';
 import Dog from "./Dog";
+import React from 'react';
 
-const DogList = (props) => {
+const DogList = ( props ) => {
     const dogs = props.dogData.map((dog, i) => {
-      return <Dog
-      key={i} 
-      name={dog.name}
-      id={dog.id}
-      age={dog.age}
-      breed={dog.breed}
-      cuteness={dog.cuteness}
-      petCount={dog.petCount}
-      onPetDog={props.onPetDog}
-      onUnregister={props.onUnregister}
-      />
-    })
-    return (<div>
-        {/* <Dog/>
-        <Dog/>
-        <Dog/> */}
-        <div>
-          {dogs}
-        </div>
-      </div>);
+      return (
+        <Dog
+        key={i} 
+        name={dog.name}
+        id={dog.id}
+        age={dog.age}
+        breed={dog.breed}
+        cuteness={dog.cuteness}
+        petCount={dog.petCount}
+        onPetDog={props.onPetDog}
+        onUnregister={props.onUnregister}
+        />
+      )
+    });
+
+    return (
+      <div>
+          {/* <Dog/>
+          <Dog/>
+          <Dog/> */}
+          <div>
+            {dogs}
+          </div>
+      </div>
+    );
 }
 
 DogList.propTypes = {
