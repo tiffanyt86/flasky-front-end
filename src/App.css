@@ -1,3 +1,14 @@
 .App {
   text-align: center;
+  margin: 0 auto;
+  width: 800px;
+}
+
+.container-cat-list {
+  margin: 0 auto;
+  width: 400px;
+}
+.cat-list {
+  margin-top: 2em;
+  text-align: left;
 }

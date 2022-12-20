@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import Cat from "./Cat";
 
 const CatList = (props) => {
   return (
-    <>
+    <div className='container-cat-list'>
       <h2>Number of Cats: {props.catData.length}</h2>
-      <ul>
+      <ul className='cat-list'>
         {props.catData.map((cat) => (
           <Cat
             name={cat.name}
@@ -22,19 +22,21 @@ const CatList = (props) => {
           />
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
 CatList.propTypes = {
-  catData: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    caretaker: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    personality: PropTypes.string.isRequired,
-    petCount: PropTypes.number.isRequired, 
-  })),
+  catData: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      caretaker: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+      personality: PropTypes.string.isRequired,
+      petCount: PropTypes.number.isRequired,
+    })
+  ),
   onPetCat: PropTypes.func.isRequired,
   onUnregister: PropTypes.func.isRequired,
 };
