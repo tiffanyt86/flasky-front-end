@@ -1,24 +1,62 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DogList from "./components/DogList";
-import dogDataJson from "./data/dogData.json";
+// import dogDataJson from "./data/dogData.json";
+import axios from 'axios';
+
+const BaseUrl = 'http://localhost:5000';
+
+// helper function focusing on API request
+const getAllDogsApi = () => {
+  return axios.get(`${BaseUrl}/dogs`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+// helper function focusing on patch request
+const petDogApi = (id) => {
+  return axios.patch(`${BaseUrl}/dogs/${id}/pet`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
 
 function App() {
-  const [dogData, setDogData] = useState(dogDataJson);
+  const [dogData, setDogData] = useState([]);
   const name = "Panthers";
+
+  // add helper in component and effect
+  const getAllDogs = () => {
+    return getAllDogsApi()
+      .then(dogs => setDogData(dogs));
+  }
+
+
+  useEffect(() => {
+    getAllDogs();
+  }, [])
+
 
   // Event Handler that describes how to increment petCount
   const petDog = (id) => {
     console.log(`Petting Doge ${id}`)
-    const newDogData = dogData.map(dog => {
-      if (dog.id === id){
-        return {...dog, petCount: dog.petCount + 1}
-      } else {
-        return dog;
-      }
-    });
-
-    setDogData(newDogData);
+    return petDogApi(id)
+      .then(dogResult => {
+        setDogData(dogData => dogData.map(dog => {
+          if (dog.id === id) {
+            return dogResult;
+          } else {
+            return dog;
+          }
+        }));
+      })
   }
 
   const unregisterDog = id => {
